@@ -10,7 +10,7 @@
     </servlet>
     <servlet-mapping>
     	<servlet-name>QuestionAnswerServlet</servlet-name>
-    	<url-pattern>/QuestionAnswerServlet</url-pattern>
+    	<url-pattern>/question</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
