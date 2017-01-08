@@ -31,21 +31,20 @@ public class QuestionAnswerServlet extends HttpServlet {
 		String operation = request.getParameter("operation");
 		if(operation.equals("add")){
 		String question = request.getParameter("ques");
-		String answer = request.getParameter("ans");
+		String uname = request.getParameter("uName");
+		String date=request.getParameter("date");
 		JSONObject result = new JSONObject();
 		
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/qa", "root", "root");
 				Statement stmt = conn.createStatement();
-				String query = "insert into question(question,answer) values('" + question + "','" + answer + "')";
+				String query = "insert into question(question,UserName,qdate)values('"+ question +"','"+ uname +"','"+date+"')";
 				stmt.execute(query);
-				result.put("status", "success");
+				result.put("status", 1);
 				
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				result.put("message", e.getMessage());
-				result.put("status","internal error occur");
+				result.put("status",0);
 				e.printStackTrace();
 			}
 			response.getWriter().print(result);
@@ -59,14 +58,15 @@ public class QuestionAnswerServlet extends HttpServlet {
 				ResultSet rs = stmt.executeQuery("Select *from question");
 				while(rs.next()){
 					JSONObject obj = new JSONObject();
-					obj.put("id", rs.getInt(1));
+					obj.put("quesId",rs.getString(1));
 					obj.put("question", rs.getString(2));
-					obj.put("answer", rs.getString(3));
+					obj.put("userName", rs.getString(3));
+					obj.put("qdate", rs.getString(4));
 					res.put(obj);
 				}
 				
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+			
 				e.printStackTrace();
 			}
 			response.getWriter().print(res);
@@ -78,11 +78,11 @@ public class QuestionAnswerServlet extends HttpServlet {
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/qa", "root", "root");
 				Statement stmt = conn.createStatement();
-				String query = "Delete from question where qid="+ qid;
+				String query = "Delete from question where qusId="+ qid;
 				stmt.execute(query);
-				obj.put("Status", "success");
+				obj.put("Status",1);
 			} catch (Exception e) {
-				obj.put("Status", "Failure");
+				obj.put("Status", 0);
 				e.printStackTrace();
 			}
 			response.getWriter().print(obj);
@@ -94,16 +94,17 @@ public class QuestionAnswerServlet extends HttpServlet {
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/qa", "root", "root");
 				Statement stmt = conn.createStatement();
-				String query = "Select *from question where qid="+qid;
+				String query = "Select *from question where qusId="+qid;
 				ResultSet rs = stmt.executeQuery(query);
 				if(rs.next()){
-					obj.put("qid", rs.getInt(1));
+					obj.put("quesId", rs.getInt(1));
 					obj.put("question", rs.getString(2));
-					obj.put("answer", rs.getString(3));
+					obj.put("userName", rs.getString(3));
+					obj.put("qdate",rs.getString(4));
 				}
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				obj.put("status", "failure");
+				
+				obj.put("status", 0);
 				e.printStackTrace();
 			}
 			response.getWriter().print(obj);
