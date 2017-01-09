@@ -33,60 +33,38 @@ public class QuestionAnswerServlet extends HttpServlet {
 		String question = request.getParameter("ques");
 		String uname = request.getParameter("uName");
 		String date=request.getParameter("date");
-		JSONObject result = new JSONObject();
+		JSONObject obj = new JSONObject();
 		
 			try {
-				Class.forName("com.mysql.jdbc.Driver");
-				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/qa", "root", "root");
-				Statement stmt = conn.createStatement();
-				String query = "insert into question(question,UserName,qdate)values('"+ question +"','"+ uname +"','"+date+"')";
-				stmt.execute(query);
-				result.put("status", 1);
-				
+			    QuestionClass ques = new QuestionClass();
+			    ques.add(question, uname, date);
+				obj.put("status", 1);
 			} catch (Exception e) {
-				result.put("status",0);
+				obj.put("status",0);
 				e.printStackTrace();
 			}
-			response.getWriter().print(result);
-
+			response.getWriter().print(obj);
 		}else if(operation.equals("getAll")){
 			JSONArray res = new JSONArray(); 
 			try {
-				Class.forName("com.mysql.jdbc.Driver");
-				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/qa", "root", "root");
-				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery("Select *from question");
-				while(rs.next()){
-					JSONObject obj = new JSONObject();
-					obj.put("quesId",rs.getString(1));
-					obj.put("question", rs.getString(2));
-					obj.put("userName", rs.getString(3));
-					obj.put("qdate", rs.getString(4));
-					res.put(obj);
-				}
-				
+				QuestionClass ques = new QuestionClass();
+				res = ques.getAll();
 			} catch (Exception e) {
-			
 				e.printStackTrace();
 			}
 			response.getWriter().print(res);
-			
 		}else if(operation.equals("delete")){
 			JSONObject obj = new JSONObject();
-			int qid = Integer.parseInt(request.getParameter("qid"));
+			int quesId = Integer.parseInt(request.getParameter("quesId"));
 			try {
-				Class.forName("com.mysql.jdbc.Driver");
-				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/qa", "root", "root");
-				Statement stmt = conn.createStatement();
-				String query = "Delete from question where qusId="+ qid;
-				stmt.execute(query);
-				obj.put("Status",1);
-			} catch (Exception e) {
+				QuestionClass ques = new QuestionClass();
+				ques.delete(quesId);
+				obj.put("status", 1);
+				} catch (Exception e) {
 				obj.put("Status", 0);
 				e.printStackTrace();
 			}
 			response.getWriter().print(obj);
-			
 		}else if(operation.equals("getOne")){
 			JSONObject obj = new JSONObject();
 			int qid = Integer.parseInt(request.getParameter("qid"));
