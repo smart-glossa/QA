@@ -17,7 +17,7 @@ public class userClass {
 	ResultSet rs = null;
 	PreparedStatement ps = null;
 
-	public userClass() throws ClassNotFoundException, SQLException {
+	public userClass() throws ClassNotFoundException, SQLException {    
 		openConnection();
 	}
 
