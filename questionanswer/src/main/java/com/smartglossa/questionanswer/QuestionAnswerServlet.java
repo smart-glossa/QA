@@ -39,7 +39,7 @@ public class QuestionAnswerServlet extends HttpServlet {
 			    QuestionClass ques = new QuestionClass();
 			    ques.add(question, uname, date);
 				obj.put("status", 1);
-			} catch (Exception e) {
+			} catch (Exception e) { 
 				obj.put("status",0);
 				e.printStackTrace();
 			}
@@ -66,28 +66,70 @@ public class QuestionAnswerServlet extends HttpServlet {
 			}
 			response.getWriter().print(obj);
 		}else if(operation.equals("getOne")){
+			int quesId = Integer.parseInt(request.getParameter("qId"));
 			JSONObject obj = new JSONObject();
-			int qid = Integer.parseInt(request.getParameter("qid"));
 			try {
-				Class.forName("com.mysql.jdbc.Driver");
-				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/qa", "root", "root");
-				Statement stmt = conn.createStatement();
-				String query = "Select *from question where qusId="+qid;
-				ResultSet rs = stmt.executeQuery(query);
-				if(rs.next()){
-					obj.put("quesId", rs.getInt(1));
-					obj.put("question", rs.getString(2));
-					obj.put("userName", rs.getString(3));
-					obj.put("qdate",rs.getString(4));
-				}
-			} catch (Exception e) {
-				
+				QuestionClass ques = new QuestionClass();
+				obj = ques.getOne(quesId);
+					}
+			 catch (Exception e) {
 				obj.put("status", 0);
 				e.printStackTrace();
 			}
 			response.getWriter().print(obj);
 			
+		}else if(operation.equals("addAnswer")){
+			String answer = request.getParameter("ans");
+			String uName = request.getParameter("uName");
+			String adate = request.getParameter("date");
+			JSONObject obj = new JSONObject();
+			
+				try {
+				    QuestionClass ques = new QuestionClass();
+				    ques.addAnswer(answer, uName, adate);
+					obj.put("status", 1);
+				} catch (Exception e) { 
+					obj.put("status",0);
+					e.printStackTrace();
+				}
+				response.getWriter().print(obj);
+		
+		}else if(operation.equals("getAll")){
+			JSONArray res = new JSONArray(); 
+			try {
+				QuestionClass ques = new QuestionClass();
+				res = ques.getAllanswer();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			response.getWriter().print(res);
+		}else if(operation.equals("delete")){
+			JSONObject obj = new JSONObject();
+			int ansId = Integer.parseInt(request.getParameter("ansId"));
+			try {
+				QuestionClass ques = new QuestionClass();
+				ques.deleteAnswer(ansId);
+				obj.put("status", 1);
+			} catch (Exception e) {
+				// TODO: handle exception
+				obj.put("status", 0);
+				e.printStackTrace();
+		     }
+			response.getWriter().println(obj);
+		}else if(operation.equals("getOneAnswer")){
+			JSONObject obj = new JSONObject();
+			int quesId = Integer.parseInt(request.getParameter("qusId"));
+			try {
+				QuestionClass ques = new QuestionClass();
+				obj = ques.getOne(quesId);
+			} catch (Exception e) {
+				// TODO: handle exception
+				obj.put("status", 0);
+				e.printStackTrace();
+			}
+			response.getWriter().println(obj);
 		}
+		
 		
 	}
 
