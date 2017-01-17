@@ -25,7 +25,6 @@ public class QuestionAnswerServlet extends HttpServlet {
 			throws ServletException, IOException {
 		doPost(request, response);
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String operation = request.getParameter("operation");
@@ -128,9 +127,30 @@ public class QuestionAnswerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			response.getWriter().println(obj);
+		}else if(operation.equals("addQA")){
+			String questionId = request.getParameter("qId");
+			String answerId = request.getParameter("aId");
+			JSONObject obj = new JSONObject();
+			
+				try {
+				    QuestionClass ques = new QuestionClass();
+				    ques.add(questionId, answerId);
+					obj.put("status", 1);
+				} catch (Exception e) { 
+					obj.put("status",0);
+					e.printStackTrace();
+				}
+				response.getWriter().print(obj);
+			}else if(operation.equals("getAllQA")){
+				JSONArray res = new JSONArray(); 
+				try {
+					QuestionClass ques = new QuestionClass();
+					res = ques.getAll();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				response.getWriter().println(res);				
+			}
 		}
-		
-		
 	}
 
-}

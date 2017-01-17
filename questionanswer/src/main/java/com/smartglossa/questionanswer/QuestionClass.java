@@ -126,6 +126,32 @@ return array;
 	}
 	return obj;
  }
+ public void add(String questionId,String answerId) throws SQLException{
+	 try {
+		String query="insert into qa(questionId,answerId)values('"+questionId+"','"+answerId+"')";
+		stmt.execute(query);
+	 }
+			 finally {
+		// TODO: handle finally clause
+				 closeConnection();
+	}
+ }
+ public JSONArray getAllQA()throws ClassNotFoundException, SQLException{
+	 JSONArray array = new JSONArray();
+	 try {
+		 String query = "Select *from qa";
+		 rs = stmt.executeQuery(query);
+			while(rs.next()){
+				JSONObject obj = new JSONObject();
+				obj.put("questionId", rs.getInt("questionId"));
+				obj.put("anwserId",rs.getString("answerId"));
+			}
+	} finally {
+		// TODO: handle finally clause
+		closeConnection();
+	}
+	return array;
+	 }
 public void openConnection() throws SQLException, ClassNotFoundException {
 	Class.forName("com.mysql.jdbc.Driver");
 	conn = DriverManager.getConnection(
