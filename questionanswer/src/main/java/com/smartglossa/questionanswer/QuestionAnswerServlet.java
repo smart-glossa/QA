@@ -1,11 +1,6 @@
 package com.smartglossa.questionanswer;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,10 +11,6 @@ import org.json.JSONObject;
 
 public class QuestionAnswerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	public QuestionAnswerServlet() {
-		super();
-	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -44,17 +35,17 @@ public class QuestionAnswerServlet extends HttpServlet {
 			}
 			response.getWriter().print(obj);
 		}else if(operation.equals("getAll")){
-			JSONArray res = new JSONArray(); 
+			JSONArray arr = new JSONArray(); 
 			try {
 				QuestionClass ques = new QuestionClass();
-				res = ques.getAll();
+				arr = ques.getAll();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			response.getWriter().print(res);
+			response.getWriter().print(arr);
 		}else if(operation.equals("delete")){
 			JSONObject obj = new JSONObject();
-			int quesId = Integer.parseInt(request.getParameter("quesId"));
+			int quesId = Integer.parseInt(request.getParameter("qusId"));
 			try {
 				QuestionClass ques = new QuestionClass();
 				ques.delete(quesId);
@@ -65,7 +56,7 @@ public class QuestionAnswerServlet extends HttpServlet {
 			}
 			response.getWriter().print(obj);
 		}else if(operation.equals("getOne")){
-			int quesId = Integer.parseInt(request.getParameter("qId"));
+			int quesId = Integer.parseInt(request.getParameter("qusId"));
 			JSONObject obj = new JSONObject();
 			try {
 				QuestionClass ques = new QuestionClass();
