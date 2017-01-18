@@ -70,7 +70,7 @@ return arr;
  }
  public void addAnswer(String answer,String uName,String adate)throws SQLException{
 	 try {
-		 String query = "insert into answer(answer,userName,adate) values("+answer+","+uName+","+adate+")";
+		 String query = "insert into answer(answer,userName,adate) values('"+answer+"','"+uName+"','"+adate+"')";
 		 stmt.execute(query);
 		
 	} finally {
@@ -120,9 +120,9 @@ return arr;
 	}
 	return obj;
  }
- public void add(String questionId,String answerId) throws SQLException{
+ public void add1(String questionId,String answerId,String answer) throws SQLException{
 	 try {
-		String query="insert into qa(questionId,answerId)values('"+questionId+"','"+answerId+"')";
+		String query="insert into qa(questionId,answerId,answer)values('"+questionId+"','"+answerId+"','"+answer+"')";
 		stmt.execute(query);
 	 }
 			 finally {

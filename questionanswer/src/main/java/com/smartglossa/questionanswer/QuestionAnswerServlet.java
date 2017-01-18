@@ -121,11 +121,12 @@ public class QuestionAnswerServlet extends HttpServlet {
 		}else if(operation.equals("addQA")){
 			String questionId = request.getParameter("qId");
 			String answerId = request.getParameter("aId");
+			String answer=request.getParameter("ans");
 			JSONObject obj = new JSONObject();
 			
 				try {
 				    QuestionClass ques = new QuestionClass();
-				    ques.add(questionId, answerId);
+				    ques.add1(questionId, answerId,answer);
 					obj.put("status", 1);
 				} catch (Exception e) { 
 					obj.put("status",0);

@@ -32,7 +32,7 @@ function answer(){
 	ans += "<\/table>";
 $('.answ')[0].innerHTML=ans;
 }
-function questt(){
+function quest(){
 	var strVar="";
 	strVar += "<label>What is a HTML:<\/label>";
 	strVar += "	<input type=\"text\" id=\"na\"  \/>";
