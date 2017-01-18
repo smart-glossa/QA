@@ -78,42 +78,43 @@ return arr;
 	}
  }
  public JSONArray getAllanswer()throws ClassNotFoundException, SQLException{
-	 JSONArray array = new JSONArray();
+	 JSONArray res = new JSONArray();
 	 try {
 		 String query = "select *from answer";
 		 rs = stmt.executeQuery(query);
 			while(rs.next()){
 				JSONObject obj = new JSONObject();
-				obj.put("qusId", rs.getInt("qusId"));
-				obj.put("question", rs.getString("question"));
+				obj.put("answerId", rs.getInt("answerId"));
+				obj.put("answer", rs.getString("answer"));
 				obj.put("userName", rs.getString("userName"));
-				obj.put("qdate",rs.getString("qdate"));
+				obj.put("adate",rs.getString("adate"));
+				res.put(obj);
 			}
 	} finally {
 		// TODO: handle finally clause
 		closeConnection();
 	}
-	return array;
+	return res;
 	 }
  public void deleteAnswer(int ansId) throws SQLException{
 	 try {
-		 String query = "Delete from question where answerId="+ ansId;
+		 String query = "Delete from answer where answerId="+ ansId;
 			stmt.execute(query);
 	} finally {
 		// TODO: handle finally clause
 		closeConnection();
 	}
  }
- public JSONObject getOneAnswer(int quesId) throws ClassNotFoundException, SQLException {
+ public JSONObject getOneAnswer(int ansId) throws ClassNotFoundException, SQLException {
      JSONObject obj = new JSONObject();
      try {
-    	 String query = "select * from question where qusId="+quesId;
+    	 String query = "select * from answer where answerId="+ansId;
          rs =stmt.executeQuery(query);
          if(rs.next()){
  			obj.put("answerId", rs.getInt("answerId"));
  			obj.put("answer", rs.getString("answer"));
  			obj.put("userName", rs.getString("userName"));
- 			obj.put("qdate",rs.getString("qdate"));
+ 			obj.put("adate",rs.getString("adate"));
  		}
 	} finally {
 		closeConnection();
@@ -139,6 +140,8 @@ return arr;
 				JSONObject obj = new JSONObject();
 				obj.put("questionId", rs.getInt("questionId"));
 				obj.put("anwserId",rs.getString("answerId"));
+				obj.put("answer",rs.getString("answer"));
+				array.put(obj);
 			}
 	} finally {
 		// TODO: handle finally clause

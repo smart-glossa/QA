@@ -84,7 +84,7 @@ public class QuestionAnswerServlet extends HttpServlet {
 				}
 				response.getWriter().print(obj);
 		
-		}else if(operation.equals("getAll")){
+		}else if(operation.equals("getAllanswer")){
 			JSONArray res = new JSONArray(); 
 			try {
 				QuestionClass ques = new QuestionClass();
@@ -93,7 +93,7 @@ public class QuestionAnswerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			response.getWriter().print(res);
-		}else if(operation.equals("delete")){
+		}else if(operation.equals("deleteAnswer")){
 			JSONObject obj = new JSONObject();
 			int ansId = Integer.parseInt(request.getParameter("ansId"));
 			try {
@@ -108,10 +108,10 @@ public class QuestionAnswerServlet extends HttpServlet {
 			response.getWriter().println(obj);
 		}else if(operation.equals("getOneAnswer")){
 			JSONObject obj = new JSONObject();
-			int quesId = Integer.parseInt(request.getParameter("qusId"));
+			int ansId = Integer.parseInt(request.getParameter("ansId"));
 			try {
 				QuestionClass ques = new QuestionClass();
-				obj = ques.getOne(quesId);
+				obj = ques.getOneAnswer(ansId);
 			} catch (Exception e) {
 				// TODO: handle exception
 				obj.put("status", 0);
@@ -134,14 +134,14 @@ public class QuestionAnswerServlet extends HttpServlet {
 				}
 				response.getWriter().print(obj);
 			}else if(operation.equals("getAllQA")){
-				JSONArray res = new JSONArray(); 
+				JSONArray array = new JSONArray(); 
 				try {
 					QuestionClass ques = new QuestionClass();
-					res = ques.getAll();
+					array = ques.getAllQA();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				response.getWriter().println(res);				
+				response.getWriter().println(array);				
 			}
 		}
 	}
