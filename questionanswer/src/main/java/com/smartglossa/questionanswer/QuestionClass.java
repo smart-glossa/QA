@@ -13,6 +13,7 @@ public class QuestionClass {
 	Connection conn = null;
 	Statement stmt = null;
 	ResultSet rs = null;
+	private String quesId;
 	public QuestionClass() throws ClassNotFoundException, SQLException {
 		openConnection();
 	}
@@ -91,7 +92,6 @@ return arr;
 				res.put(obj);
 			}
 	} finally {
-		// TODO: handle finally clause
 		closeConnection();
 	}
 	return res;
@@ -101,7 +101,6 @@ return arr;
 		 String query = "Delete from answer where answerId="+ ansId;
 			stmt.execute(query);
 	} finally {
-		// TODO: handle finally clause
 		closeConnection();
 	}
  }
@@ -121,34 +120,62 @@ return arr;
 	}
 	return obj;
  }
- public void add1(String questionId,String answerId,String answer) throws SQLException{
+ public void add1(String questionId,String answerId) throws SQLException{
 	 try {
-		String query="insert into qa(questionId,answerId,answer)values('"+questionId+"','"+answerId+"','"+answer+"')";
+		String query="insert into queans(questionId,answerId)values('"+questionId+"','"+answerId+"')";
 		stmt.execute(query);
 	 }
 			 finally {
-		// TODO: handle finally clause
-				 closeConnection();
+			 closeConnection();
 	}
  }
  public JSONArray getAllQA()throws ClassNotFoundException, SQLException{
 	 JSONArray array = new JSONArray();
 	 try {
-		 String query = "Select *from qa";
+		 String query = "Select *from queans";
 		 rs = stmt.executeQuery(query);
 			while(rs.next()){
 				JSONObject obj = new JSONObject();
 				obj.put("questionId", rs.getInt("questionId"));
 				obj.put("anwserId",rs.getString("answerId"));
-				obj.put("answer",rs.getString("answer"));
 				array.put(obj);
 			}
 	} finally {
-		// TODO: handle finally clause
+		
 		closeConnection();
 	}
 	return array;
 	 }
+ 
+ public JSONObject getOneAns(int quesId) throws ClassNotFoundException, SQLException {
+     JSONObject object = new JSONObject();
+     try {
+    	
+		String query = "select answerId from queans where questionId="+quesId;
+         rs =stmt.executeQuery(query);
+         if(rs.next()){
+ 			object.put("answerId", rs.getInt("answerId"));
+         }
+	} finally {
+		closeConnection();
+	}
+	return object;
+ }
+ public JSONObject getOneques(int ansId)throws ClassNotFoundException,SQLException {
+	 JSONObject obj=new JSONObject();
+	 try{
+		 String queryy="select answer from answer where answerId="+ansId;
+		 rs=stmt.executeQuery(queryy);
+		 while(rs.next()){
+			 obj.put("answer",rs.getString("answer"));
+		 }
+	 }finally{
+		 closeConnection();
+	 }
+	 return obj;
+	 
+	
+}
 public void openConnection() throws SQLException, ClassNotFoundException {
 	Class.forName("com.mysql.jdbc.Driver");
 	//String URL="jdbc:mysql://localhost:3306/qa";

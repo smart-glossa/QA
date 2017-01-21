@@ -121,12 +121,11 @@ public class QuestionAnswerServlet extends HttpServlet {
 		}else if(operation.equals("addQA")){
 			String questionId = request.getParameter("qId");
 			String answerId = request.getParameter("aId");
-			String answer=request.getParameter("ans");
 			JSONObject obj = new JSONObject();
 			
 				try {
 				    QuestionClass ques = new QuestionClass();
-				    ques.add1(questionId, answerId,answer);
+				    ques.add1(questionId, answerId);
 					obj.put("status", 1);
 				} catch (Exception e) { 
 					obj.put("status",0);
@@ -142,7 +141,34 @@ public class QuestionAnswerServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 				response.getWriter().println(array);				
+			}else if(operation.equals("getOneAns")){
+				JSONObject object = new JSONObject();
+				int quesId = Integer.parseInt(request.getParameter("quesId"));
+				try {
+					QuestionClass ques = new QuestionClass();
+					object = ques.getOneAns(quesId);
+				} catch (Exception e) {
+					object.put("status", 0);
+					e.printStackTrace();
+				}
+				response.getWriter().println(object);
+				
+				
+			}else if(operation.equals("getOneques")){
+				JSONObject obj=new JSONObject();
+				int ansId=Integer.parseInt(request.getParameter("ansId"));
+			try{
+				QuestionClass ques=new QuestionClass();
+				obj=ques.getOneques(ansId);
+			}catch(Exception e){
+				obj.put("status", 0);
+				e.printStackTrace();
+			}
+			response.getWriter().println(obj);
 			}
 		}
+		
+	
+	
 	}
 
