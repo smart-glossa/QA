@@ -1,8 +1,10 @@
-database name:qa
-tables: 1.user
+<p>database name:qa</p>
+<p>tables: 1.user
         2.question
         3.answer
         4.qa
+</p>
+<p>
 1.USER:
 CREATE TABLE `user` (
   `userId` int(11) NOT NULL AUTO_INCREMENT,
@@ -12,7 +14,8 @@ CREATE TABLE `user` (
   PRIMARY KEY (`userId`),
   UNIQUE KEY `uName` (`uName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 |
-
+</p>
+<p>
 2.QUESTION:
 question | CREATE TABLE `question` (
   `qusId` int(11) NOT NULL AUTO_INCREMENT,
@@ -23,7 +26,8 @@ question | CREATE TABLE `question` (
   KEY `fk_question` (`userName`),
   CONSTRAINT `fk_question` FOREIGN KEY (`userName`) REFERENCES `user` (`uName`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 |
-
+</p>
+<p>
 3.ANSWER:
 answer | CREATE TABLE `answer` (
   `answerId` int(11) NOT NULL AUTO_INCREMENT,
@@ -34,7 +38,8 @@ answer | CREATE TABLE `answer` (
   KEY `userName` (`userName`),
   CONSTRAINT `answer_ibfk_1` FOREIGN KEY (`userName`) REFERENCES `user` (`uName`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 |
-
+</p>
+<p>
 4.QA:
 qa    | CREATE TABLE `qa` (
   `questionId` int(11) DEFAULT NULL,
@@ -44,5 +49,5 @@ qa    | CREATE TABLE `qa` (
   CONSTRAINT `qa_ibfk_1` FOREIGN KEY (`answerId`) REFERENCES `answer` (`answerId`) ON DELETE CASCADE,
   CONSTRAINT `qa_ibfk_2` FOREIGN KEY (`questionId`) REFERENCES `question` (`qusId`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 |
-
+</p>
       
