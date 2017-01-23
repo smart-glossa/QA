@@ -1,14 +1,4 @@
-function question(){
-	var user="";
-user += "<table>";
-user += "<tr><td>UserId*:<\/td><td><input type=\"text\"id=\"userid\"placeholder=\"UserId!..\"><\/td><\/tr>";
-user += "<tr><td>Name*:<\/td><td><input type=\"text\"id=\"name\"placeholder=\"Name!..\"><\/td><\/tr>";
-user += "<tr><td>UserName*:<\/td><td><input type=\"text\"id=\"uname\"placeholder=\"UserName!..\"><\/td><\/tr>";
-user += "<tr><td>Password*:<\/td><td><input type=\"password\"id=\"pass\"placeholder=\"Password!..\"><\/td><\/tr>";
-user += "<tr><td><button id=\"submit\">Submit<\/button><\/td><td><button id=\"update\">Update<\/button><\/td><\/tr>";
-user += "<\/table>";
-$('.use')[0].innerHTML=user;
-}
+
 function qa(){
 	var ques="";
 	ques += "<table>";
