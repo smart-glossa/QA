@@ -76,7 +76,7 @@ $(document).ready(function(){
 		var answer=$('#ans').val();
 		var uname=$('#uname').val();
 		var date=$('#adate').val();
-		if(ans==""){
+		if(answer==""){
         alert("please enter your Answer");
         return;
 		}
@@ -142,6 +142,63 @@ $(document).ready(function(){
 			$(".anss")[0].innerHTML=table;
 		});
 	});
+	$(document).on("click","#sub",function(){
+		var questionId=$('#qId').val();
+		var answerId=$('#aId').val();
+		if(questionId==""){
+        alert("please enter your QuestionId");
+        return;
+		}
+		if(answerId==""){
+			alert("please enter your AnswerId");
+			return;
+		}
+		
+		var url="/questionanswer/question?operation=addQA&qId="+questionId+"&aId="+answerId;
+		$('input[type=text]').val();
+		$.ajax({
+			url: url,
+			type:'post'
+		})
+		.done(function(result){
+				alert("Successfully Added");
+			})
+		.fail(function(result){
+			alert("Error Occurs");
+		});
+	});
 	
+
+	$(document).on('keyup','#qId',function(){
+		var id=$('#qId').val();
+		if(id!=""){
+		var url="http://localhost:8080/questionanswer/question?operation=getOneAns&qId="+id;
+		$.ajax({
+			url:url,
+			type:'post'
+		})
+		.done(function(result){
+			result=JSON.parse(result);
+			$("#qId").val(result.questionId);
+			$("#aId").val(result.answerId);
+		});
+		}
+	});
+
+	$(document).on('keyup','#aId',function(){
+		var ansid=$('#aId').val();
+		if(ansid!=""){
+		var url="http://localhost:8080/questionanswer/question?operation=getOneques&aId="+ansid;
+		$.ajax({
+			url:url,
+			type:'post'
+		})
+		.done(function(result){
+			result=JSON.parse(result);
+			$("#aid").val(result.answerId);
+			$("#answ").val(result.answer);
+		});
+		}
+	});
 	
 });

@@ -143,7 +143,7 @@ public class QuestionAnswerServlet extends HttpServlet {
 				response.getWriter().println(array);				
 			}else if(operation.equals("getOneAns")){
 				JSONObject object = new JSONObject();
-				int quesId = Integer.parseInt(request.getParameter("quesId"));
+				int quesId = Integer.parseInt(request.getParameter("qId"));
 				try {
 					QuestionClass ques = new QuestionClass();
 					object = ques.getOneAns(quesId);
@@ -156,7 +156,7 @@ public class QuestionAnswerServlet extends HttpServlet {
 				
 			}else if(operation.equals("getOneques")){
 				JSONObject obj=new JSONObject();
-				int ansId=Integer.parseInt(request.getParameter("ansId"));
+				int ansId=Integer.parseInt(request.getParameter("aId"));
 			try{
 				QuestionClass ques=new QuestionClass();
 				obj=ques.getOneques(ansId);

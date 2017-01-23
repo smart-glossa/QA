@@ -50,8 +50,9 @@ document.getElementById("na").value;
 function myfunction(){
 	var quesans="";
 	quesans += "<table>";
-	quesans += "<tr><td>QuestionId*:<\/td><td><input type=\"text\"id=\"qid\"placeholder=\"QuestionId!..\"><\/td><\/tr>";
-	quesans += "<tr><td>AnswerId*:<\/td><td><input type=\"text\"id=\"aid\"placeholder=\"AnswerId!..\"><\/td><\/tr>";
+	quesans += "<tr><td>QuestionId*:<\/td><td><input type=\"text\"id=\"qId\"placeholder=\"QuestionId!..\"><\/td><\/tr>";
+	quesans += "<tr><td>AnswerId*:<\/td><td><input type=\"text\"id=\"aId\"placeholder=\"AnswerId!..\"><\/td><\/tr>";
+	quesans += "<tr><td>Answer*:<\/td><td><input type=\"text\"id=\"answ\"placeholder=\"Answer!..\"><\/td><\/tr>";
 	quesans += "<tr><td><button id=\"sub\">Submit<\/button><\/td><\/tr>";
 	quesans += "<\/table>";
 $('.answer')[0].innerHTML=quesans;
