@@ -21,26 +21,36 @@ public class userClass {
 		openConnection();
 	}
 
-	public void addUser(String name, String uName, String password) throws SQLException {
+	public void addUser(String name, String uName, String password,int contactNo,String emailId) throws SQLException {
 		try {
-			String query = "insert into user(name,uName,password) values('" + name + "','" + uName + "','" + password
-					+ "')";
+			String query = "insert into user(name,uName,password,contactNo,emailId) values('" + name + "','" + uName + "','" + password
+					+ "',"+contactNo+",'"+emailId+"')";
 			stmt.execute(query);
 		} finally {
 			// TODO: handle finally clause
 			closeConnection();
 		}
 	}
-	public JSONObject getOne(int userId) throws ClassNotFoundException, SQLException{
+	public JSONObject login(String uName,String pass)throws SQLException{
+		JSONObject obj = new JSONObject();
+		try {
+			String query = "select * from user where uName='" +uName+ "' AND password=" +pass;
+			rs=stmt.executeQuery(query);
+			if(rs.next()){
+				obj.put("uName", rs.getString("uName"));
+			}
+		} finally {
+			closeConnection();
+		}
+		return obj;		
+	}
+	public JSONObject getName(String uName) throws ClassNotFoundException, SQLException{
 		JSONObject obj = new JSONObject(); 
 		try {
-			String query = "select * from user where userId="+userId;
+			String query = "select name from user where uName='"+uName+"'";
 			rs=stmt.executeQuery(query);
 	       if(rs.next()){
 	    	   obj.put("name", rs.getString("name"));
-               obj.put("uName", rs.getString("uName"));
-               obj.put("password", rs.getString("password"));
-               obj.put("userId", rs.getInt("userId"));
 	       }
 		} finally {
 			// TODO: handle finally clause
@@ -49,16 +59,7 @@ public class userClass {
 		return obj;
 		
 	}
-	public void delete(int userId) throws ClassNotFoundException, SQLException{
-		try {
-			String query ="delete from user where userId="+userId;
-			stmt.execute(query);
-		} finally {
-			// TODO: handle finally clause
-			closeConnection();
-		}
-	}
-
+	
 	public void openConnection() throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection(

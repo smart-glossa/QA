@@ -12,6 +12,17 @@
     	<servlet-name>QuestionAnswerServlet</servlet-name>
     	<url-pattern>/question</url-pattern>
     </servlet-mapping>
+    <servlet>
+    	<description>
+    	</description>
+    	<display-name>userServlet</display-name>
+    	<servlet-name>userServlet</servlet-name>
+    	<servlet-class>com.smartglossa.questionanswer.userServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    	<servlet-name>userServlet</servlet-name>
+    	<url-pattern>/user</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

@@ -1,7 +1,31 @@
 <html>
 <head>
+<script type="text/javascript"src="js/user.js"></script>
+<script type="text/javascript" src="js/external/jquery.js"></script>
+<style>
+ .reg{
+    width: 400px;
+    height: 400px;
+    background-color: lightgray;
+  }
+  h1{
+    background-color: #1e88e5;
+    text-align: center;
+  }
+</style>
 <body>
-<button onclick="document.getElementById('id01').style.display='block'">Login</button>
+ <div class="reg">
+  <h1>Register</h1>
+  <table>
+    <tr><td>Name:</td><td><input type="text"placeholder="Name!.."id="name"></td></tr>
+      <tr><td>UserName:</td><td><input type="text"placeholder="UserName!.."id="uname"></td></tr>
+        <tr><td>Password:</td><td><input type="password"placeholder="Password!.."id="pass"></td></tr>
+          <tr><td>Email:</td><td><input type="text"placeholder="Email!.."id="email"></td></tr>
+            <tr><td>ContactNo:</td><td><input type="text"placeholder="ContactNo!.."id="contact"></td></tr>
+              <tr><td><button id="but">Register</button></td></tr>
+    </table>
+  </div>
+<button onclick="document.getElementById('id01').style.display='block'" id="login">Login</button>
 <div id="id01" class="modal">
  <span onclick="document.getElementById('id01').style.display='none'" 
 class="close" title="Close Modal">&times;</span>
@@ -30,7 +54,7 @@ class="close" title="Close Modal">&times;</span>
 </div>
 
 
-<style >
+<style >-
 
 .modal {
     display: none; 
@@ -41,7 +65,7 @@ class="close" title="Close Modal">&times;</span>
     height: 200px; 
     padding-top: 60px;
     text-align: center;
-    margin-left: 200px;
+    margin-left: 400px;
 }
 .Avatar{
   width: 200px;
