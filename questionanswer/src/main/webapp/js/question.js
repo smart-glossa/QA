@@ -207,6 +207,6 @@ $(document).ready(function(){
 	    });
 	    $(document).on('click','.close',function(){
 	    	$('#log').hide();
-	    })
+	    });
 	
 });
