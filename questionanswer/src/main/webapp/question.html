@@ -20,15 +20,12 @@
     <tr><td>Name:</td><td><input type="text"placeholder="Name!.."id="name"></td></tr>
       <tr><td>UserName:</td><td><input type="text"placeholder="UserName!.."id="uname"></td></tr>
         <tr><td>Password:</td><td><input type="password"placeholder="Password!.."id="pass"></td></tr>
-          <tr><td>Email:</td><td><input type="text"placeholder="Email!.."id="email"></td></tr>
-            <tr><td>ContactNo:</td><td><input type="text"placeholder="ContactNo!.."id="contact"></td></tr>
-              <tr><td><button id="but">Register</button></td></tr>
+          <tr><td><button id="but">Register</button></td></tr>
     </table>
   </div>
-<button onclick="document.getElementById('id01').style.display='block'" id="login">Login</button>
-<div id="id01" class="modal">
- <span onclick="document.getElementById('id01').style.display='none'" 
-class="close" title="Close Modal">&times;</span>
+<button  id="login">Login</button>
+<div id="log" class="modal">
+ <span class="close" > >>>></span>
  <div class="container">
     <div class="imgcontainer">
       <img src="image/images.jpg" alt="Avatar" class="avatar"></img>
@@ -147,19 +144,7 @@ span{
 }
 
 
-.animate {
-    -webkit-animation: animatezoom 0.6s;
-    animation: animatezoom 0.6s
-}
 
-@-webkit-keyframes animatezoom {
-    from {-webkit-transform: scale(0)} 
-    to {-webkit-transform: scale(1)}
-}
-
-@keyframes animatezoom {
-    from {transform: scale(0)} 
-    to {transform: scale(1)}
 </style>
 
 

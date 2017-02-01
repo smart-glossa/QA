@@ -201,4 +201,12 @@ $(document).ready(function(){
 		}
 	});
 	
+	
+	 $(document).on('click','#login',function(){
+	       $('#log').show();
+	    });
+	    $(document).on('click','.close',function(){
+	    	$('#log').hide();
+	    })
+	
 });
