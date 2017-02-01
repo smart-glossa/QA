@@ -2,15 +2,14 @@
 <web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
     <display-name>questionanswer</display-name>
     <servlet>
-    	<description>
-    	</description>
-    	<display-name>QuestionAnswerServlet</display-name>
-    	<servlet-name>QuestionAnswerServlet</servlet-name>
-    	<servlet-class>com.smartglossa.qa.QAServlet</servlet-class>
+        <description></description>
+        <display-name>QuestionAnswerServlet</display-name>
+        <servlet-name>QuestionAnswerServlet</servlet-name>
+        <servlet-class>com.smartglossa.qa.QAServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-    	<servlet-name>QuestionAnswerServlet</servlet-name>
-    	<url-pattern>/qa</url-pattern>
+        <servlet-name>QuestionAnswerServlet</servlet-name>
+        <url-pattern>/qa</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -19,5 +18,5 @@
     </session-config>
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
-        </welcome-file-list>
-    </web-app>
+    </welcome-file-list>
+</web-app>

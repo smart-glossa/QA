@@ -1,5 +1,5 @@
 function getAll() {
-    var url = "http://localhost:8080/questionanswer/qa?operation=queansAll";
+    var url = "http://localhost:8080/questionanswer/qa?operation=getAll";
     $.ajax({
             url: url,
             type: 'POST'

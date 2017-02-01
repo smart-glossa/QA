@@ -13,7 +13,7 @@ $(document).ready(function() {
             $("#ans").focus().css("outline-color", "#e53935");
             return;
         }
-        var url = "http://localhost:8080/questionanswer/qa?operation=queansAdd&question=" + qus + "&answer=" + ans;
+        var url = "http://localhost:8080/questionanswer/qa?operation=add&question=" + qus + "&answer=" + ans;
         $.ajax({
                 url: url,
                 type: 'POST'

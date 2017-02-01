@@ -31,7 +31,7 @@ public class QAServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String operation = request.getParameter("operation");
-        if (operation.equals("queansAdd")) {
+        if (operation.equals("add")) {
             JSONObject ob = new JSONObject();
             String question = request.getParameter("question");
             String answer = request.getParameter("answer");
@@ -49,7 +49,7 @@ public class QAServlet extends HttpServlet {
                 e.printStackTrace();
             }
             response.getWriter().println(ob);
-        } else if (operation.equals("queansAll")) {
+        } else if (operation.equals("getAll")) {
             JSONArray all = new JSONArray();
             try {
                 Class.forName("com.mysql.jdbc.Driver");
