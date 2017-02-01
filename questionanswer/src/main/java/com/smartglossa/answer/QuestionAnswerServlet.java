@@ -15,10 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class questionAnswerServlet extends HttpServlet {
+public class QuestionAnswerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public questionAnswerServlet() {
+	public QuestionAnswerServlet() {
 		super();
 
 	}
@@ -41,7 +41,8 @@ public class questionAnswerServlet extends HttpServlet {
 				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/questionanswer", "root",
 						"root");
 				Statement state = conn.createStatement();
-				String query = "insert into questionanswer(question,answer) values('" + question + "','" + answer + "')";
+				String query = "insert into questionanswer(question,answer) values('" + question + "','" + answer
+						+ "')";
 				state.execute(query);
 				ob.put("status", "1");
 			} catch (Exception e) {
@@ -49,24 +50,24 @@ public class questionAnswerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			response.getWriter().println(ob);
-		}
-		else if(operation.equals("queansAll")){
+		} else if (operation.equals("queansAll")) {
 			JSONArray all = new JSONArray();
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/questionanswer", "root",
 						"root");
 				Statement statement = conn.createStatement();
-				String query="select * from questionanswer";
+				String query = "select * from questionanswer";
 				ResultSet result = statement.executeQuery(query);
-				while(result.next()){
+				while (result.next()) {
 					JSONObject object = new JSONObject();
-					object.put("question", result.getString(1));
-					object.put("answer", result.getString(2));
+					object.put("id", result.getInt(1));
+					object.put("question", result.getString(2));
+					object.put("answer", result.getString(3));
 					all.put(object);
 				}
 			} catch (Exception e) {
-			
+
 				e.printStackTrace();
 			}
 			response.getWriter().println(all);
