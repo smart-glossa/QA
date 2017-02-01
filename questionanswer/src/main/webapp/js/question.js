@@ -208,5 +208,8 @@ $(document).ready(function(){
 	    $(document).on('click','.close',function(){
 	    	$('#log').hide();
 	    });
+	    
+	    $(document).on('click','#here')
 	
 });
+

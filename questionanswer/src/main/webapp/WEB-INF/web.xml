@@ -19,9 +19,25 @@
     	<servlet-name>userServlet</servlet-name>
     	<servlet-class>com.smartglossa.questionanswer.userServlet</servlet-class>
     </servlet>
+   
+    <servlet>
+    	<description>
+    	</description>
+    	<display-name>questionAnswerServlet</display-name>
+    	<servlet-name>questionAnswerServlet</servlet-name>
+    	<servlet-class>com.smartglossa.answer.questionAnswerServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
     	<servlet-name>userServlet</servlet-name>
     	<url-pattern>/user</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+    	<servlet-name>questionAnswer</servlet-name>
+    	<url-pattern>/questionAnswer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+    	<servlet-name>questionAnswerServlet</servlet-name>
+    	<url-pattern>/qa</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
