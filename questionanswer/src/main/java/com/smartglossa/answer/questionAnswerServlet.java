@@ -3,6 +3,7 @@ package com.smartglossa.answer;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class questionAnswerServlet extends HttpServlet {
@@ -47,6 +49,27 @@ public class questionAnswerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			response.getWriter().println(ob);
+		}
+		else if(operation.equals("queansAll")){
+			JSONArray all = new JSONArray();
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/questionanswer", "root",
+						"root");
+				Statement statement = conn.createStatement();
+				String query="select * from questionanswer";
+				ResultSet result = statement.executeQuery(query);
+				while(result.next()){
+					JSONObject object = new JSONObject();
+					object.put("question", result.getString(1));
+					object.put("answer", result.getString(2));
+					all.put(object);
+				}
+			} catch (Exception e) {
+			
+				e.printStackTrace();
+			}
+			response.getWriter().println(all);
 		}
 	}
 
