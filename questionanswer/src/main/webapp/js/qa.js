@@ -28,11 +28,14 @@ $(document).ready(function() {
 		$(document).on('click', '#here', function() {
         var qa = "";
         qa += "<center>"
-        qa += "<table>";
-        qa += "<tr><td>question:<\/td><td><textarea id=\"que\"><\/textarea><\/td><\/tr>";
-        qa += "<tr><td>Answer:<\/td><td><textarea id=\"ans\"><\/textarea><\/td><\/tr>";
-        qa += "<tr colspan=\"2\"><td><button id=\"send\">AddNow<\/button><\/td><\/tr>";
-        qa += "<\/table>";
+       qa += "<p>Question</p>";
+        qa += "<textarea id=\'que\' placeholder=\'enter the question here\'></textarea>";
+        qa += "<div class=\'textarea\'>";
+        qa += "<textarea id=\'ans\' placeholder=\'enter the answer here\'><\/textarea>";
+        qa += "<div class=\'post\'>";
+        qa += "<button id=\'send\'>POST<\/button>";
+        qa += "<\/div>";
+        qa += "<\/div>";
         qa += "<\/center>";
         $('#qaAddForm')[0].innerHTML = qa;
     });
