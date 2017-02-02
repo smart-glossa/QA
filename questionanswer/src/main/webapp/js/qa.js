@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    listAllQuestionAnswers();
+   
     $(document).on('click', '#send', function() {
         var qus = $("#que").val();
         var ans = $("#ans").val();
@@ -37,7 +37,7 @@ $(document).ready(function() {
         $('#qaAddForm')[0].innerHTML = qa;
     });
 });
-function listAllQuestionAnswers() {
+ $(document).on('click','.home',function(){
     var url = "/questionanswer/qa?operation=getAll";
     $.ajax({
             url: url,
@@ -45,16 +45,16 @@ function listAllQuestionAnswers() {
         })
         .done(function(result) {
             var res = JSON.parse(result);
-            var table = "<table style='border: 1px solid black'>"
-            table += "<tr><th> NO.</th><th>QUESTION</th><th>ANSWER</th></tr>";
-            for (var i = 0; i < res.length; i++) {
-                table += "<tr>";
-                table += "<td>" + res[i].id + "</td>";
-                table += "<td>" + res[i].question + "</td>";
-                table += "<td>" + res[i].answer + "</td>";
-                table += "</tr>";
+            var table = "<div>"
+                for (var i = 0; i < res.length; i++) {
+                table += "<div class='qa'>";
+                table += "<span>" + res[i].id + "<span>";
+                table += "<b id='question'>" + res[i].question + "</b>";
+                table += "<p id='answer'>" + res[i].answer + "<p>";
+                table += "</div>";
+                
             }
-            table += "</table>";
+            table += "</div>";
             $("#getAll")[0].innerHTML = table;
-        })
-}
+        });
+});
