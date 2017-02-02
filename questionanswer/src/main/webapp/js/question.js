@@ -34,7 +34,7 @@ $(document).ready(function(){
 	$(document).on('keyup','#qusId',function(){
 		var id=$('#qusId').val();
 		if(id!=""){
-		var url="http://localhost:8080/questionanswer/question?operation=getOne&qusId="+id;
+		var url="http://localhost:8080/questionanswer/Question?operation=getOne&qusId="+id;
 		$.ajax({
 			url:url,
 			type:'post'

@@ -15,7 +15,7 @@ $(document).ready(function(){
 		$("#ans").focus().css("outline-color","#e53935");
 		return;
 		}
-		var url = "http://localhost:8080/questionanswer/question?operation=queansAdd&question="+qus+"&answer="+ans;
+		var url = "http://localhost:8080/questionanswer/Question?operation=queansAdd&question="+qus+"&answer="+ans;
 		$.ajax({
 			url: url,
 			type: 'POST'

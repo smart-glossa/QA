@@ -71,6 +71,43 @@ public class QuestionAnswerServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			response.getWriter().println(all);
+		} else if (operation.equals("update")) {
+			JSONObject up = new JSONObject();
+			int id = Integer.parseInt(request.getParameter("id"));
+			String question = request.getParameter("question");
+			String answer = request.getParameter("answer");
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/questionanswer", "root",
+						"root");
+				Statement statement = conn.createStatement();
+				String query = "update questionanswer set question='" + question + "',answer='" + answer
+						+ "' where id= " + id ;
+				statement.execute(query);
+				up.put("status", "1");
+			} catch (Exception e) {
+				up.put("status", "0");
+				e.printStackTrace();
+			}
+			response.getWriter().println(up);
+
+		}
+		else if(operation.equals("delete")){
+			JSONObject delete = new JSONObject();
+			int id = Integer.parseInt(request.getParameter("id"));
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/questionanswer", "root",
+						"root");
+				Statement sta = conn.createStatement();
+				String query="delete from questionanswer where id="+id;
+				sta.execute(query);
+				delete.put("status", "1");
+			} catch (Exception e) {
+			    delete.put("status","0");
+				e.printStackTrace();
+			}
+			response.getWriter().println(delete);
 		}
 	}
 
