@@ -23,7 +23,7 @@ margin-left: 20px;
 {
 	resize:none;
 	width:700px;
-	height:200px;
+	height:70px;
 	border:none;
 	outline:none;
 }
@@ -32,6 +32,12 @@ margin-left: 20px;
 	background-color:#e0e0e0;
 	width:550;
 	height:50;
+}
+#send
+{
+	background-color:white;
+	color:black;
+	font-size:20px;
 }
 .textarea
 {
