@@ -61,9 +61,13 @@ $(document).ready(function() {
                 table += "<span>" + res[i].id + "<span>";
                 table += "<b id='question'>" + res[i].question + "</b>";
                 table += "<p>" +res[i].answer+ "</p>";
-                table += "<button class=\'aans\'>AnswerHere<\/button>";
-                table += "<div id=\'typeans\'><\/div>";
-                table += "</div>";
+                table += "<div class=\'textarea\'>";
+    	        table += "<textarea id=\'ans\' placeholder=\'enter the answer here\'><\/textarea>";
+    	        table += "<div class=\'post\'>";
+    	        table += "<button id=\'update\'>POST<\/button>";
+    	        table += "<\/div>";
+    	        table += "<\/div>";
+    	        table += "</div>";
                 
             }
             table += "</div>"
@@ -73,14 +77,16 @@ $(document).ready(function() {
 });
    
 	    $(document).on('click', '#update', function() {
-	        var qus = $("#que").val();
-	        var ans = $("#ans").val();
-	        if (ans == "") {
+		   var answer=$(this).parent().parent().children().text();
+		   
+		   
+		   
+		    		if (ans == "") {
 	            alert("please enter the  answer");
 	            $("#que").focus().css("outline-color", "#e53935");
 	            return;
 	        }
-	        var url = "/questionanswer/qa?operation=update&question=" + qus + "&answer=" + ans;
+	        var url = "/questionanswer/qa?operation=update&&answer=" + answer;
 	        $.ajax({
 	                url: url,
 	                type: 'POST'
