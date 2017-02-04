@@ -8,6 +8,12 @@ $(document).ready(function() {
             $("#que").focus().css("outline-color", "#e53935");
             return;
         }
+        if(ans == "")
+        	{
+        alert("please enter the  answer");
+        $("#ans").focus().css("outline-color", "#e53935");
+        	}
+        return;
         var url = "/questionanswer/qa?operation=add&question=" + qus + "&answer=" + ans;
         $.ajax({
                 url: url,
@@ -25,8 +31,12 @@ $(document).ready(function() {
         qa += "<center>"
        qa += "<div>";
         qa += "<textarea id=\'que\' placeholder=\'enter the question here\'></textarea>";
+        qa += "<div class=\'textarea\'>";
+        qa += "<textarea id=\'ans\' placeholder=\'enter the answer here\'><\/textarea>";
         qa += "<div class=\'post\'>";
         qa += "<button id=\'send\'>POST<\/button>";
+        qa += "<\/div>";
+        qa += "<\/div>";
         qa += "<\/div>";
         qa += "<\/div>";
  
@@ -34,19 +44,7 @@ $(document).ready(function() {
         $('#qaAddForm')[0].innerHTML = qa;  
         
     });
-		$(document).on('click','.aans',function(){
-			var qa = "";
-			qa += "<div class=\'textarea\'>";
-	        qa += "<textarea id=\'ans\' placeholder=\'enter the answer here\'><\/textarea>";
-	        qa += "<div class=\'post\'>";
-	        qa += "<button id=\'update\'>POST<\/button>";
-	        qa += "<\/div>";
-	        qa += "<\/div>";
-	        qa += "<\/center>";
-	     
-	        $('#typeans')[0].innerHTML=qa;
-		});
-
+		
  $(document).on('click','.home',function(){
     var url = "/questionanswer/qa?operation=getAll";
     $.ajax({
@@ -58,16 +56,9 @@ $(document).ready(function() {
             var table = "<div>";
                 for (var i = 0; i < res.length; i++) {
                 table += "<div class='qa'>";
-                table += "<span>" + res[i].id + "<span>";
-                table += "<b id='question'>" + res[i].question + "</b>";
-                table += "<p>" +res[i].answer+ "</p>";
-                table += "<div class=\'textarea\'>";
-    	        table += "<textarea id=\'ans\' placeholder=\'enter the answer here\'><\/textarea>";
-    	        table += "<div class=\'post\'>";
-    	        table += "<button id=\'update\'>POST<\/button>";
-    	        table += "<\/div>";
-    	        table += "<\/div>";
-    	        table += "</div>";
+                table += "<b id='question'>" + parseInt(i)+"."+ res[i].question + "</b>";
+                table += "<p id='answer'>" +res[i].answer+ "</p>";
+                table += "</div>";
                 
             }
             table += "</div>"
@@ -76,26 +67,5 @@ $(document).ready(function() {
         });
 });
    
-	    $(document).on('click', '#update', function() {
-		   var answer=$(this).parent().parent().children().text();
-		   
-		   
-		   
-		    		if (ans == "") {
-	            alert("please enter the  answer");
-	            $("#que").focus().css("outline-color", "#e53935");
-	            return;
-	        }
-	        var url = "/questionanswer/qa?operation=update&&answer=" + answer;
-	        $.ajax({
-	                url: url,
-	                type: 'POST'
-	            })
-	            .done(function(result) {
-	                alert("successfully updated");
-	            })
-	            .fail(function(result) {
-	                alert("Error occurs");
-	            });
-	    });
+	 
 });
