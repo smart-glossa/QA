@@ -31,12 +31,8 @@ $(document).ready(function() {
         qa += "<center>"
        qa += "<div>";
         qa += "<textarea id=\'que\' placeholder=\'enter the question here\'></textarea>";
-        qa += "<div class=\'textarea\'>";
-        qa += "<textarea id=\'ans\' placeholder=\'enter the answer here\'><\/textarea>";
         qa += "<div class=\'post\'>";
         qa += "<button id=\'send\'>POST<\/button>";
-        qa += "<\/div>";
-        qa += "<\/div>";
         qa += "<\/div>";
         qa += "<\/div>";
  
@@ -58,6 +54,12 @@ $(document).ready(function() {
                 table += "<div class='qa'>";
                 table += "<b id='question'>" + parseInt(i)+"."+ res[i].question + "</b>";
                 table += "<p id='answer'>" +res[i].answer+ "</p>";
+                table += "<div class='textarea'>";
+                table += "<textarea id='ans' placeholder='enter the answer here'></textarea>";
+                table += "<div class='post'>";
+                table += "<button id='update'>POST</button>";
+                table += "</div>";
+                table += "</div>";
                 table += "</div>";
                 
             }
