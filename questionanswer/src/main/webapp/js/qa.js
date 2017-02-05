@@ -12,8 +12,9 @@ $(document).ready(function() {
         	{
         alert("please enter the  answer");
         $("#ans").focus().css("outline-color", "#e53935");
-        	}
         return;
+        	}
+ 
         var url = "/questionanswer/qa?operation=add&question=" + qus + "&answer=" + ans;
         $.ajax({
                 url: url,
@@ -29,13 +30,12 @@ $(document).ready(function() {
 		$(document).on('click', '#here', function() {
         var qa = "";
         qa += "<center>"
-       qa += "<div>";
+       qa += "<div >";
         qa += "<textarea id=\'que\' placeholder=\'enter the question here\'></textarea>";
         qa += "<div class=\'textarea\'>";
         qa += "<textarea id=\'ans\' placeholder=\'enter the answer here\'><\/textarea>";
         qa += "<div class=\'post\'>";
         qa += "<button id=\'send\'>POST<\/button>";
-        qa += "<\/div>";
         qa += "<\/div>";
         qa += "<\/div>";
         qa += "<\/div>";
@@ -55,8 +55,9 @@ $(document).ready(function() {
             var res = JSON.parse(result);
             var table = "<div>";
                 for (var i = 0; i < res.length; i++) {
+                	var b=i+1;
                 table += "<div class='qa'>";
-                table += "<b id='question'>" + parseInt(i)+"."+ res[i].question + "</b>";
+                table += "<b id='question'>" + b +"."+ res[i].question + "</b>";
                 table += "<p id='answer'>" +res[i].answer+ "</p>";
                 table += "</div>";
                 
