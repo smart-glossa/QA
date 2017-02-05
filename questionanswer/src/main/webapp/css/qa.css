@@ -1,9 +1,9 @@
 .qa
 {
 	border:1px solid black;
-	width:600px;
-		height:120px;
-		margin-top:100p
+	width:550px;
+		height:180px;
+		margin-top:100px;
 }
 #question
 {
@@ -26,7 +26,7 @@ color:red;
 #ans
 {
 	resize:none;
-	width:700px;
+	width:550px;
 	height:70px;
 	border:none;
 	outline:none;
