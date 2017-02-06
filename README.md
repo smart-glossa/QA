@@ -30,6 +30,6 @@ Insert into question(question, qdate) values ("What is HTML?", "07/02/2017 5:00P
 <p> { "qid": 1, </p>
 <p>    "question" : "What is HTML", </p>
 <p>    "answer" : [{"ansId: 25", "message": "All is well", "ansDate": "07/02/2017 5:00PM"}, {"ansId: 26", "message": "All is well2", "ansDate": "08/02/2017 6:00PM"}] </p>
-
+<p> } </p>
 
       
