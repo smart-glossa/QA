@@ -29,7 +29,7 @@ $(document).ready(function() {
 		$(document).on('click', '#here', function() {
         var qa = "";
         qa += "<center>"
-       qa += "<div>";
+       qa += "<div class=\'textarea\'>";
         qa += "<textarea id=\'que\' placeholder=\'enter the question here\'></textarea>";
         qa += "<div class=\'post\'>";
         qa += "<button id=\'send\'>POST<\/button>";
@@ -49,10 +49,11 @@ $(document).ready(function() {
         })
         .done(function(result) {
             var res = JSON.parse(result);
-            var table = "<div>";
+            var table = "<div class='all'>";
                 for (var i = 0; i < res.length; i++) {
+                	var a = i+1;
                 table += "<div class='qa'>";
-                table += "<b id='question'>" + parseInt(i)+"."+ res[i].question + "</b>";
+                table += "<b id='question'>" + a +"."+ res[i].question + "</b>";
                 table += "<p id='answer'>" +res[i].answer+ "</p>";
                 table += "<div class='textarea'>";
                 table += "<textarea id='ans' placeholder='enter the answer here'></textarea>";
@@ -69,5 +70,16 @@ $(document).ready(function() {
         });
 });
    
-	 
+	 $(document).on('click','.home',function(){
+		 $('#qaAddForm').hide();
+			 });
+	    $(document).on('click','.home',function(){
+    	$('#getAll').show();
+    }); 
+    $(document).on('click','#here', function(){
+      $('#qaAddForm').show();	
+    });
+    $(document).on('click','#here',function(){
+    	$('#getAll').hide();
+    });
 });
