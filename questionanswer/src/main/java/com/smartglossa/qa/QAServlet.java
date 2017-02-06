@@ -37,7 +37,8 @@ public class QAServlet extends HttpServlet {
             String answer = request.getParameter("answer");
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/questionanswer", "root",
+                Connection conn = DriverManager.getConnection(
+                        "jdbc:mysql://" + QAConstants.MYSQL_SERVER + "/" + QAConstants.DATABASE, QAConstants.USERNAME,
                         QAConstants.PASSWORD);
                 Statement state = conn.createStatement();
                 String query =
@@ -53,7 +54,8 @@ public class QAServlet extends HttpServlet {
             JSONArray all = new JSONArray();
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/questionanswer", "root",
+                Connection conn = DriverManager.getConnection(
+                        "jdbc:mysql://" + QAConstants.MYSQL_SERVER + "/" + QAConstants.DATABASE, QAConstants.USERNAME,
                         QAConstants.PASSWORD);
                 Statement statement = conn.createStatement();
                 String query = "select * from questionanswer";
@@ -77,7 +79,8 @@ public class QAServlet extends HttpServlet {
             String answer = request.getParameter("answer");
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/questionanswer", "root",
+                Connection conn = DriverManager.getConnection(
+                        "jdbc:mysql://" + QAConstants.MYSQL_SERVER + "/" + QAConstants.DATABASE, QAConstants.USERNAME,
                         QAConstants.PASSWORD);
                 Statement statement = conn.createStatement();
                 String query =
@@ -95,7 +98,8 @@ public class QAServlet extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("id"));
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/questionanswer", "root",
+                Connection conn = DriverManager.getConnection(
+                        "jdbc:mysql://" + QAConstants.MYSQL_SERVER + "/" + QAConstants.DATABASE, QAConstants.USERNAME,
                         QAConstants.PASSWORD);
                 Statement sta = conn.createStatement();
                 String query = "delete from questionanswer where id=" + id;
