@@ -28,8 +28,8 @@ Insert into question(question, qdate) values ("What is HTML?", "07/02/2017 5:00P
 <p> Case 2: View Question and Answers: </p>
 <p> JSONReponse: </p>
 <p> { "qid": 1, </p>
-<p>    "question" : "What is HTML", </p>
-<p>    "answer" : [{"ansId: 25", "message": "All is well", "ansDate": "07/02/2017 5:00PM"}, {"ansId: 26", "message": "All is well2", "ansDate": "08/02/2017 6:00PM"}] </p>
+<p>    "question" : {"content": "What is HTML", "qdate": "07/02/2017 5:00PM" }, </p>
+<p>    "answers" : [{"ansId: 25", "content": "All is well", "ansDate": "07/02/2017 5:00PM"}, {"ansId: 26", "content": "All is well2", "ansDate": "08/02/2017 6:00PM"}], </p>
 <p> } </p>
 
       
