@@ -1,6 +1,6 @@
 .qa
 {
-	border-bottom:1px solid #e0e0e0;
+	border-bottom:1px solid black;
 	width:850px;
 		height:220px;
 		margin-top:30px;
@@ -10,11 +10,15 @@
 {
 margin-left: 20px;
 color:red;
+font-size:18px;
+font-family:italic;
 }
 #answer
 {
 	margin-left: 40px;
 	color:green;
+	font-size:18px;
+	font-family:italic;
 }
 .all
 {
@@ -28,9 +32,12 @@ color:red;
 	width:550px;
 	height:50px;
 	resize:none;
+	outline:none;
+	border:none;
 	
 	
 }
+
 #ans
 {
 	resize:none;
@@ -64,7 +71,7 @@ nav p
 }
 .textarea
 {
-	border:1px solid black;
+	border:1px solid #e0e0e0;
 		width:550px;
 		margin-top:20px;
 		margin-left: 20px;
@@ -73,14 +80,24 @@ nav p
 #send
 {
 	float:right;
-	margin-top:20px;
+	margin-top:15px;
+	margin-right:10px;
+	background-color: #1e88e5;
+	color:white;
+	padding:5px 10px;
+	font-size:15px; 
+	border:none;
 }
 #update
 {
 	float:right;
-	margin-top:20px;
-	background-color: black;
+	margin-top:15px;
+	margin-right:10px;
+	background-color: #1e88e5;
 	color:white;
+	padding:5px 10px;
+	font-size:15px; 
+	border:none;
 }
 #qaAddForm
 {
