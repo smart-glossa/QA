@@ -9,7 +9,8 @@ $(document).ready(function() {
             return;
         }
        
-        var url = "/questionanswer/qa?operation=add&question=" + qus + "&answer=" + ans;
+        var url = "/questionanswer/qa?operation=add&question=" + qus ;
+        $("input[type=text],textarea").val("");
         $.ajax({
                 url: url,
                 type: 'POST'
