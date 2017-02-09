@@ -2,6 +2,7 @@ package com.smartglossa.qa;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -33,8 +34,10 @@ public class QAServlet extends HttpServlet {
         String operation = request.getParameter("operation");
         if (operation.equals("add")) {
             JSONObject ob = new JSONObject();
+   
             String question = request.getParameter("question");
-            String answer = request.getParameter("answer");
+       
+    
             try {
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection conn = DriverManager.getConnection(
@@ -42,7 +45,8 @@ public class QAServlet extends HttpServlet {
                         QAConstants.PASSWORD);
                 Statement state = conn.createStatement();
                 String query =
-                        "insert into questionanswer(question,answer) values('" + question + "','" + answer + "')";
+                        "insert into question(question,qdate) values('" + question + "',NOW())";
+                
                 state.execute(query);
                 ob.put("status", "1");
             } catch (Exception e) {
@@ -62,9 +66,8 @@ public class QAServlet extends HttpServlet {
                 ResultSet result = statement.executeQuery(query);
                 while (result.next()) {
                     JSONObject object = new JSONObject();
-                    object.put("id", result.getInt(1));
-                    object.put("question", result.getString(2));
-                    object.put("answer", result.getString(3));
+                     object.put("question", result.getString(2));
+                    object.put("qdate", result.getString(3));
                     all.put(object);
                 }
             } catch (Exception e) {
@@ -74,9 +77,8 @@ public class QAServlet extends HttpServlet {
             response.getWriter().println(all);
         } else if (operation.equals("update")) {
             JSONObject up = new JSONObject();
-            int id = Integer.parseInt(request.getParameter("id"));
-            String question = request.getParameter("question");
-            String answer = request.getParameter("answer");
+            int id = Integer.parseInt(request.getParameter("qid"));
+            String question = request.getParameter("question");  
             try {
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection conn = DriverManager.getConnection(
@@ -84,7 +86,7 @@ public class QAServlet extends HttpServlet {
                         QAConstants.PASSWORD);
                 Statement statement = conn.createStatement();
                 String query =
-                        "update questionanswer set question='" + question + "',answer='" + answer + "' where id= " + id;
+                        "update questionanswer set question='" + question +  "' where id= " + id;
                 statement.execute(query);
                 up.put("status", "1");
             } catch (Exception e) {
