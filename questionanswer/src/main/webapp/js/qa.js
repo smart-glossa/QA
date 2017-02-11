@@ -17,6 +17,7 @@ $(document).ready(function() {
             })
             .done(function(result) {
                 alert("successfully added");
+               
             })
             .fail(function(result) {
                 alert("Error occurs");
@@ -49,6 +50,7 @@ $(document).ready(function() {
     $(document).on('click', '#here', function() {
         var qa = "";
         qa += "<center>"
+        qa += "<p id=\'getqus\'><\/p>";
         qa += "<div class=\'textarea\' >";
         qa += "<textarea id=\'que\' placeholder=\'enter the question here\'></textarea>";
         qa += "<div class=\'post\'>";
@@ -89,7 +91,7 @@ $(document).ready(function() {
                     var a = i + 1;
                     table += "<div class='qa'>";
                     table += "<b id='question'>" + a + "." + res[i].question + "</b>";
-                    table += "<p id='answer'>" + res[i].answer + "</p>";
+                    table += "<p class='qdate'>" + res[i].qdate + "</p>";
                     table += "<div class='textarea'>";
                     table += "<textarea id='ans' placeholder='enter the answer here'></textarea>";
                     table += "<div id='" + res[i].id + "' class='post'>";

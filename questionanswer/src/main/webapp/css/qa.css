@@ -111,3 +111,9 @@ nav p {
 {
 	margin-top:10px;
 }
+.qdate
+{
+	float:right;
+	margin-top: -10px;
+	margin-right: 10px;
+}
