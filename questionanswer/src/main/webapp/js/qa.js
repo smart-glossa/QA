@@ -22,6 +22,30 @@ $(document).ready(function() {
                 alert("Error occurs");
             });
     });
+
+        $(document).on('click', '#anpost', function() {
+            var ans = $("#ans").val();
+
+            if (ans == "") {
+                alert("please enter the  question");
+                $("#que").focus().css("outline-color", "#e53935");
+                return;
+            }
+
+            var url = "/questionanswer/qa?operation=ansAdd&answer=" + ans;
+            $("input[type=text],textarea").val("");
+            $.ajax({
+                    url: url,
+                    type: 'POST'
+                })
+                .done(function(result) {
+                    alert("successfully added");
+                })
+                .fail(function(result) {
+                    alert("Error occurs");
+                });
+        });
+        
     $(document).on('click', '#here', function() {
         var qa = "";
         qa += "<center>"
@@ -31,10 +55,25 @@ $(document).ready(function() {
         qa += "<button id=\'send\'>POST<\/button>";
         qa += "<\/div>";
         qa += "<\/div>";
+        qa += "<button id=\'loopans\'>AnswerHere<\/button>"; 
+        qa += "<\/center>";
+        
+        $('#quAddForm')[0].innerHTML = qa;
 
-
-        $('#qaAddForm')[0].innerHTML = qa;
-
+    });
+    
+    $(document).on('click','#loopans',function(){
+    	var loop = "";
+    	loop += "<center>";
+    	loop += "<div class=\'textarea\' >";
+        loop += "<textarea id=\'ans\' placeholder=\'enter the answer here\'></textarea>";
+        loop += "<div class=\'post\'>";
+        loop += "<button id=\'anpost\'>POST<\/button>";
+        loop += "<\/div>";
+        loop += "<\/div>";
+        loop += "<\/center>";
+        
+        $('#anAddForm')[0].innerHTML = loop;
     });
 
     $(document).on('click', '.home', function() {

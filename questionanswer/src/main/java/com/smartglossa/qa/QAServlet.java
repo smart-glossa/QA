@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.servlet.ServletException;
@@ -62,7 +63,7 @@ public class QAServlet extends HttpServlet {
                         "jdbc:mysql://" + QAConstants.MYSQL_SERVER + "/" + QAConstants.DATABASE, QAConstants.USERNAME,
                         QAConstants.PASSWORD);
                 Statement statement = conn.createStatement();
-                String query = "select * from questionanswer";
+                String query = "select * from question";
                 ResultSet result = statement.executeQuery(query);
                 while (result.next()) {
                     JSONObject object = new JSONObject();
@@ -86,7 +87,7 @@ public class QAServlet extends HttpServlet {
                         QAConstants.PASSWORD);
                 Statement statement = conn.createStatement();
                 String query =
-                        "update questionanswer set question='" + question +  "' where id= " + id;
+                        "update question set question='" + question +  "' where id= " + id;
                 statement.execute(query);
                 up.put("status", "1");
             } catch (Exception e) {
@@ -104,7 +105,7 @@ public class QAServlet extends HttpServlet {
                         "jdbc:mysql://" + QAConstants.MYSQL_SERVER + "/" + QAConstants.DATABASE, QAConstants.USERNAME,
                         QAConstants.PASSWORD);
                 Statement sta = conn.createStatement();
-                String query = "delete from questionanswer where id=" + id;
+                String query = "delete from question where id=" + id;
                 sta.execute(query);
                 delete.put("status", "1");
             } catch (Exception e) {
@@ -112,7 +113,55 @@ public class QAServlet extends HttpServlet {
                 e.printStackTrace();
             }
             response.getWriter().println(delete);
+        } else if(operation.equals("ansAdd")){
+        	
+        	JSONObject ansAdd = new JSONObject();
+        	String answer = request.getParameter("answer");
+        	int qid = Integer.parseInt(request.getParameter("qid"));
+        	
+            
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection conn = DriverManager.getConnection(
+				        "jdbc:mysql://" + QAConstants.MYSQL_SERVER + "/" + QAConstants.DATABASE, QAConstants.USERNAME,
+				        QAConstants.PASSWORD);
+	            Statement sta = conn.createStatement();
+	            String query="insert into answer(answer,ansDate,qid)values('" + answer + "',NOW()," + qid + ")";
+	            sta.execute(query);
+	            ansAdd.put("status", "1");
+			} catch (Exception e) {
+			          ansAdd.put("status", "0");
+				e.printStackTrace();
+			}
+	        response.getWriter().println(ansAdd);
+        } 
+        else if(operation.equals("ansAll")){
+        	JSONArray anall = new JSONArray();
+        	 try {
+				Class.forName("com.mysql.jdbc.Driver");
+				 Connection conn = DriverManager.getConnection(
+	                     "jdbc:mysql://" + QAConstants.MYSQL_SERVER + "/" + QAConstants.DATABASE, QAConstants.USERNAME,
+	                     QAConstants.PASSWORD);
+	             Statement statement = conn.createStatement();
+	             String query = "select * from answer";
+	             ResultSet re = statement.executeQuery(query);
+	             while(re.next())
+	             {
+	            	 JSONObject getAll = new JSONObject();
+	            	 getAll.put("answer", re.getString("answer"));
+	            	 getAll.put("ansDate", re.getTimestamp("ansDate"));
+	            	 getAll.put("qid",re.getInt("qid"));
+	            	 anall.put(getAll);
+	             }
+			} catch (Exception e) {
+			
+				e.printStackTrace();
+			}
+ 	        response.getWriter().println(anall);
         }
+        
+
     }
+   
 
 }

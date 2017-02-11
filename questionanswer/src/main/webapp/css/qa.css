@@ -93,7 +93,21 @@ nav p {
     font-size: 15px;
     border: none;
 }
-
-#qaAddForm {
+#anpost
+{
+	float: right;
+    margin-top: 15px;
+    margin-right: 10px;
+    background-color: #1e88e5;
+    color: white;
+    padding: 5px 10px;
+    font-size: 15px;
+    border: none;
+}
+#quAddForm {
     margin-top: 100px;
+}
+#loopans
+{
+	margin-top:10px;
 }
