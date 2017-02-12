@@ -160,7 +160,32 @@ public class QAServlet extends HttpServlet {
  	        response.getWriter().println(anall);
         }
         
-
+        else if(operation.equals("getAns"))
+        {
+        	int qid = Integer.parseInt(request.getParameter("qid"));
+        	JSONArray getone = new JSONArray();
+        	try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection conn = DriverManager.getConnection(
+	                    "jdbc:mysql://" + QAConstants.MYSQL_SERVER + "/" + QAConstants.DATABASE, QAConstants.USERNAME,
+	                    QAConstants.PASSWORD);
+	            Statement statement = conn.createStatement();
+	            String query = "select * from answer where qid ="+qid;
+	            ResultSet one = statement.executeQuery(query);
+	            while(one.next()){
+	            	JSONObject get = new JSONObject();
+	            	get.put("ansId",one.getInt("ansId"));
+	            	get.put("answer", one.getString("answer"));
+	            	get.put("ansDate", one.getString("ansDate"));
+	            	getone.put(get);
+	            }
+			} catch (Exception e) {
+			
+				e.printStackTrace();
+			}
+	        response.getWriter().println(getone);
+  
+        }
     }
    
 

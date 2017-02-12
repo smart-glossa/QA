@@ -57,14 +57,14 @@ $(document).ready(function() {
         qa += "<button id=\'send\'>POST<\/button>";
         qa += "<\/div>";
         qa += "<\/div>";
-        qa += "<button id=\'loopans\'>AnswerHere<\/button>"; 
+       
         qa += "<\/center>";
         
-        $('#quAddForm')[0].innerHTML = qa;
+        $('#qaAddForm')[0].innerHTML = qa;
 
     });
     
-    $(document).on('click','#loopans',function(){
+    $(document).on('click','.loopans',function(){
     	var loop = "";
     	loop += "<center>";
     	loop += "<div class=\'textarea\' >";
@@ -75,7 +75,7 @@ $(document).ready(function() {
         loop += "<\/div>";
         loop += "<\/center>";
         
-        $('#anAddForm')[0].innerHTML = loop;
+        $('#anAddForm')[0].appendChild = loop;
     });
 
     $(document).on('click', '.home', function() {
@@ -92,13 +92,10 @@ $(document).ready(function() {
                     table += "<div class='qa'>";
                     table += "<b id='question'>" + a + "." + res[i].question + "</b>";
                     table += "<p class='qdate'>" + res[i].qdate + "</p>";
-                    table += "<div class='textarea'>";
-                    table += "<textarea id='ans' placeholder='enter the answer here'></textarea>";
-                    table += "<div id='" + res[i].id + "' class='post'>";
-                    table += "<button class='update'>POST</button>";
-                    table += "</div>";
-                    table += "</div>";
-                    table += "</div>";
+                    table +=  "<button class=\'loopans\'>AnswerHere<\/button>"; 
+                    table += "<div id=\'anAddForm\'><\/div>";
+               
+                  table += "</div>";
 
                 }
                 table += "</div>"
