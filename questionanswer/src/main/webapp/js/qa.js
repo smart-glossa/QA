@@ -64,7 +64,7 @@ $(document).ready(function() {
 
     });
     
-    $(document).on('click','.loopans',function(){
+    $(document).on('click','#loopans',function(){
     	var loop = "";
     	loop += "<center>";
     	loop += "<div class=\'textarea\' >";
@@ -75,8 +75,9 @@ $(document).ready(function() {
         loop += "<\/div>";
         loop += "<\/center>";
         
-        $('#anAddForm')[0].appendChild = loop;
+        $('#anAddForm')[0].innerHTML = loop;
     });
+    
 
     $(document).on('click', '.home', function() {
         var url = "/questionanswer/qa?operation=getAll";
@@ -92,10 +93,9 @@ $(document).ready(function() {
                     table += "<div class='qa'>";
                     table += "<b id='question'>" + a + "." + res[i].question + "</b>";
                     table += "<p class='qdate'>" + res[i].qdate + "</p>";
-                    table +=  "<button class=\'loopans\'>AnswerHere<\/button>"; 
+                    table +=  "<button id=\'loopans\'>AnswerHere<\/button>"; 
                     table += "<div id=\'anAddForm\'><\/div>";
-               
-                  table += "</div>";
+                    table += "</div>";
 
                 }
                 table += "</div>"
