@@ -2,18 +2,29 @@
 
 <head>
     <script src="js/external/jquery.js"></script>
+     <script src="js/jquery.min.js"></script>
+         <script src="js/bootstrap.min.js"></script> 
     <script src="js/qa.js"></script>
     <link rel="stylesheet" type="text/css" href="css/qa.css" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 </head>
 
 <body>
-    <nav>
-        <p class="home">HOME</p>
-        <p id="here">Ask Questions</p>
+<div class="container-fluid" id="nav">
+       
+    </div>
+    <nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="199">
+    <ul class="nav navbar-nav">
+    <li class="active">Home</li>
+    <li id="here">Question</li>
+    <li class="home">Answer</li>
+    </ul>
     </nav>
+    <div class="container-fluid" style="height:1000px">
     <div id="qaAddForm"></div>
-
+   
     <div id="getAll"></div>
+    </div>
 </body>
 
 </html>

@@ -26,7 +26,7 @@ $(document).ready(function() {
 
         $(document).on('click', '#anpost', function() {
             var ans = $("#ans").val();
-
+            
             if (ans == "") {
                 alert("please enter the  question");
                 $("#que").focus().css("outline-color", "#e53935");
@@ -65,19 +65,18 @@ $(document).ready(function() {
     });
     
     $(document).on('click','#loopans',function(){
-    	var loop = "";
-    	loop += "<center>";
-    	loop += "<div class=\'textarea\' >";
-        loop += "<textarea id=\'ans\' placeholder=\'enter the answer here\'></textarea>";
-        loop += "<div class=\'post\'>";
-        loop += "<button id=\'anpost\'>POST<\/button>";
-        loop += "<\/div>";
-        loop += "<\/div>";
-        loop += "<\/center>";
+    	var loopp = "";
+    	loopp += "<center>";
+    	loopp += "<div class=\'textarea\' >";
+        loopp += "<textarea id=\'ans\' placeholder=\'enter the answer here\'></textarea>";
+        loopp += "<div class=\'post\'>";
+        loopp += "<button id=\'anpost\'>POST<\/button>";
+        loopp += "<\/div>";
+        loopp += "<\/div>";
+        loopp += "<\/center>";
         
-        $('#anAddForm')[0].innerHTML = loop;
+        $('#anAddForm')[0].innerHTML = loopp;
     });
-    
 
     $(document).on('click', '.home', function() {
         var url = "/questionanswer/qa?operation=getAll";
